@@ -35,4 +35,8 @@ class UsersController < ApplicationController
 
   def edit
   end
+def logout
+  session[:user_id] = nil
+  redirect_to '/login'
+end
 end
