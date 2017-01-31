@@ -1,2 +1,17 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<h1>Item details</h1>
+
+
+
+    <div class="">
+      <form action="/purchase" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      Name: <%= @item.name %></a></br>
+      Description <textarea name="name" rows="2" cols="10"><%= @item.description %></textarea></br>
+      Price: $<%= @item.price %></br>
+      Date: <%= @item.deal_date.strftime('%B %d, %Y') %></br>
+      Manufacturer: <%= @item.manufacturer %></br>
+      Stock #: <%= @item.stock %></br>
+      Category: <%= @item.category_id %></br>
+      <input type="submit" name="" value="Purchase">
+    </form>
+    </div>
