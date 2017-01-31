@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :purchases
+  has_many :items, :through => :purchases
+
   validates :first_name, presence: { message: "First name must be entered"}
   validates :last_name, presence: { message: "Lirst name must be entered"}
   validates :city, presence: { message: "City must be entered"}

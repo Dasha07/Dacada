@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2><%= @user.first_name %> <%= @user.last_name %></h2> <a href="/user/<%= @user.id %>/edit">Edit Profile</a>
+<h4>Purchase History</h4>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Cost</th>
+        <th>Date of Purchase</th>
+        <th>Your Review</th>
+    </tr>
+    <% @history.each do |item| %>
+        <tr>
+            <td><%= item.name %></td>
+            <td>$<%= Purchase.where(item:item).where(user:@user).first.quantity*item.price %></td>
+            <td><%= Purchase.where(item:item).where(user:@user).first.created_at.strftime('%b %d, %Y') %></td>
+        </tr>
+    <% end %>
+</table>
