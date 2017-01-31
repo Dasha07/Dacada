@@ -21,4 +21,14 @@ Rails.application.routes.draw do
 
   get '/deal/:id'=> 'items#show'
 
+  get '/cart' => 'purchase#show'
+
+  post '/add_to_cart' => 'purchase#add_to_cart'
+
+  post '/vote' => 'items#vote'
+
+  post '/cart_add' => 'items#move'
+
+  get '/cancel/:index'=> 'purchase#cancel'
+
 end

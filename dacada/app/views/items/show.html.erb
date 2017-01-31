@@ -1,10 +1,6 @@
 <h1>Item details</h1>
+<div class="">
 
-
-
-    <div class="">
-      <form action="/purchase" method="post">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       Name: <%= @item.name %></a></br>
       Description <textarea name="name" rows="2" cols="10"><%= @item.description %></textarea></br>
       Price: $<%= @item.price %></br>
@@ -12,6 +8,11 @@
       Manufacturer: <%= @item.manufacturer %></br>
       Stock #: <%= @item.stock %></br>
       Category: <%= @item.category_id %></br>
-      <input type="submit" name="" value="Purchase">
-    </form>
-    </div>
+
+      <form action="/cart_add" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="item_id" value="<%= @item.id %>">
+        <input type="submit" name="" value="Purchase">
+
+</div>
+<a href="/deals">All Deals</a>
