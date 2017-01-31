@@ -13,8 +13,8 @@
 <% end %>
 
 
-<% @cart.each_with_index do |id| %>
-  <%= Item.find(index).name %> <a href="/cancel/<%= index %>">Cancel</a></br>
+<% @cart.each_with_index do |id, index| %>
+  <%= Item.find(id).name %> <a href="/cancel/<%= index %>">Cancel</a></br>
 <% end %>
 
 
