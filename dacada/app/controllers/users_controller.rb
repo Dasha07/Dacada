@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       return
     else
       redirect_to '/login'
+      flash[:errors] = nil
       return
     end
   end

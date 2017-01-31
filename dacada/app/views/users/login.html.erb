@@ -1,4 +1,8 @@
-<h1>Dacada Login</h1>
+<div class="header">
+  <%= link_to image_tag("Dacada_Logo.png", :alt => "logo") %>
+  <h3>Daily deals on things you never knew you needed.</h3><br>
+  <h2>Please log in to your account:</h2>
+</div>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
@@ -7,13 +11,30 @@
   <% end %>
 <% end %>
 
-<div class="">
-  <form action="/login" method="post">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <p>Email: <input type="text" name="email"></p>
-    <p>Password: <input type="text" name="password"></p>
-    <input type="submit" name="" value="Log in">
-  </form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <form action="/login" method="post" class="form-group">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <div class="form-group <%= if flash[:errors] then 'has-danger' end %>">
+          <label class="form-control-label">Email:
+            <input class="form-control <%= if flash[:errors] then 'form-control-danger' end %>" type="text" name="email"></label>
+            <% if flash[:errors]%>
+            <div class="form-control-feedback"><%= flash[:errors][:login] %></div>
+            <% end %>
+        </div>
+        <a href="/register">Register</a>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group <%= if flash[:errors] then 'has-danger' end %>">
+        <label class="form-control-label">Password:
+          <input class="form-control <%= if flash[:errors] then 'form-control-danger' end %>" type="text" name="password"></label>
+          <% if flash[:errors] %>
+          <div class="form-control-feedback"><%= flash[:errors][:login] %></div>
+          <% end %>
+      </div>
+        <input type="submit" name="" value="Log in">
+      </form>
+    </div>
+  </div>
 </div>
-
-<a href="/register">Register</a>
