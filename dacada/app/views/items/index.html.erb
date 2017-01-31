@@ -1,7 +1,11 @@
 <h1>All DACADA Deals</h1>
 
 <a href="/logout">Logout</a>
-<a href="/user/<%= @user.id %>">My Profile</a>
+<% if session[:user_id] != nil %>
+  <a href="/user/<%= @user.id %>">My Profile</a>
+<% else %>
+  <a href="/register">Sign Up</a>
+<% end %>
 
 <div class="">
   <% @items.each do |item| %>
