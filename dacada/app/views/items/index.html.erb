@@ -16,7 +16,7 @@
       Date: <%= item.deal_date.strftime('%B %d, %Y') %>
       Manufacturer: <%= item.manufacturer %>
       Stock #: <%= item.stock %>
-      Category: <%= item.category_id %>
+      Category: <%= item.category.name %>
     </div>
   <% end %>
 </div>
