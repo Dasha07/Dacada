@@ -30,7 +30,7 @@
       <p>Date: <%= item.deal_date.strftime('%B %d, %Y') %></p>
       <p>Manufacturer: <%= item.manufacturer %></p>
       <p>Stock #: <%= item.stock %></p>
-      <p>Category: <%= item.category_id %></p>
+      <p>Category: <%= item.category.name %></p>
     </div>
   <% end %>
 </div>

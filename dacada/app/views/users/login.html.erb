@@ -28,7 +28,7 @@
     <div class="col-md-4">
       <div class="form-group <%= if flash[:errors] then 'has-danger' end %>">
         <label class="form-control-label">Password:
-          <input class="form-control <%= if flash[:errors] then 'form-control-danger' end %>" type="text" name="password"></label>
+          <input class="form-control <%= if flash[:errors] then 'form-control-danger' end %>" type="password" name="password"></label>
           <% if flash[:errors] %>
           <div class="form-control-feedback"><%= flash[:errors][:login] %></div>
           <% end %>

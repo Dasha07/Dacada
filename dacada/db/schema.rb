@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130193413) do
+ActiveRecord::Schema.define(version: 20170201194712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20170130193413) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "price"
+    t.string   "description"
+    t.float    "discount"
+    t.float    "price"
     t.datetime "deal_date"
     t.string   "manufacturer"
     t.integer  "stock"
@@ -36,17 +37,27 @@ ActiveRecord::Schema.define(version: 20170130193413) do
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "purchases", force: :cascade do |t|
-    t.integer  "shipping_cost"
+    t.float    "shipping_cost"
     t.integer  "shipping_time"
     t.integer  "user_id"
     t.integer  "item_id"
+    t.integer  "order_id"
     t.integer  "quantity"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "purchases", ["item_id"], name: "index_purchases_on_item_id", using: :btree
+  add_index "purchases", ["order_id"], name: "index_purchases_on_order_id", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
@@ -77,7 +88,9 @@ ActiveRecord::Schema.define(version: 20170130193413) do
   end
 
   add_foreign_key "items", "categories"
+  add_foreign_key "orders", "users"
   add_foreign_key "purchases", "items"
+  add_foreign_key "purchases", "orders"
   add_foreign_key "purchases", "users"
   add_foreign_key "reviews", "items"
   add_foreign_key "reviews", "users"

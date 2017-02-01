@@ -2,8 +2,9 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.string :name
-      t.text :description
-      t.integer :price
+      t.string :description
+      t.float :discount
+      t.float :price
       t.datetime :deal_date
       t.string :manufacturer
       t.integer :stock

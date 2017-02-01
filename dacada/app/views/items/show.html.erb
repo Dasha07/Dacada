@@ -1,18 +1,18 @@
 <h1>Item details</h1>
 <div class="">
-
       <p>Name: <%= @item.name %></a></p></br>
       <p>Description <%= @item.description %></p></br>
       <p>Price: $<%= @item.price %></p></br>
       <p>Date: <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
       <p>Manufacturer: <%= @item.manufacturer %></p></br>
       <p>Stock #: <%= @item.stock %></p></br>
-      <p>Category: <%= @item.category_id %></p></br>
+      <p>Category: <%= @item.category.name %></p></br>
 
       <form action="/cart_add" method="post">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <input type="hidden" name="item_id" value="<%= @item.id %>">
-        <input class="btn btn-info" type="submit" name="" value="Purchase">
+        <input class="btn btn-info" type="submit" name="" value="Add to Cart">
+      </form>
 
 </div><br>
 <a class="btn btn-primary" href="/deals">All Deals</a>

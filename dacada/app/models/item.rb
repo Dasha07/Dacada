@@ -1,4 +1,4 @@
 class Item < ActiveRecord::Base
   belongs_to :category
-  has_many :purchases
+  has_many :reviews
 end
