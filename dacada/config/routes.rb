@@ -13,22 +13,24 @@ Rails.application.routes.draw do
 
   post '/login' => 'users#login_user'
 
-  get '/deals' => 'items#index'
-
-  root 'items#index'
-
   get '/logout' => 'users#logout'
+
+  get '/deals' => 'items#index'
 
   get '/deal/:id'=> 'items#show'
 
-  get '/cart' => 'purchase#show'
-
-  post '/add_to_cart' => 'purchase#add_to_cart'
+  post '/cart_add' => 'items#move'
 
   post '/vote' => 'items#vote'
 
-  post '/cart_add' => 'items#move'
+  get '/cart' => 'purchases#show'
 
-  get '/cancel/:index'=> 'purchase#cancel'
+  post '/add_to_cart' => 'purchases#add_to_cart'
 
+  get '/remove/:index'=> 'purchases#remove'
+
+  post '/purchase' => 'purchases#make_purchase'
+
+  root 'items#index'
+  
 end
