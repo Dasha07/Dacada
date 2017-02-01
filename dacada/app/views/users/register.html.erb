@@ -34,14 +34,14 @@
           </div>
           <div class="form-group <%= if flash[:errors] then "has-danger" end %>">
             <label class="form-control-label">Password:
-              <input class="form-control <%= if flash[:errors] then "form-control-danger" end %>" type="text" name="password"></label>
+              <input class="form-control <%= if flash[:errors] then "form-control-danger" end %>" type="password" name="password"></label>
               <% if flash[:errors] and flash[:errors]['password'] %>
               <div class="form-control-feedback"><%= flash[:errors]['password'][0] %></div>
               <% end %>
           </div>
           <div class="form-group <%= if flash[:errors] then "has-danger" end %>">
             <label class="form-control-label">Confirm Password:
-              <input class="form-control <%= if flash[:errors] then "form-control-danger" end %>" type="text" name="password_confirm"></label>
+              <input class="form-control <%= if flash[:errors] then "form-control-danger" end %>" type="password" name="password_confirm"></label>
               <% if flash[:errors] and flash[:errors]['password_confirm'] %>
               <div class="form-control-feedback"><%= flash[:errors]['password_confirm'] %></div>
               <% end %>

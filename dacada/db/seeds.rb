@@ -24,14 +24,14 @@ User.create first_name:'Arya', last_name:'Smith', email:'a@s.com', password:'asd
 
 
 Category.create name:'Coding'
-Category.create name:'Foding'
-Category.create name:'Goding'
-Category.create name:'Roding'
-Category.create name:'Loding'
+Category.create name:'Reads'
+Category.create name:'Electronics'
+Category.create name:'Appliance'
+Category.create name:'Miscellaneous'
 
 
-Item.create name:'Coding Dojo', description:'Book', price:100, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 50, category_id:1
-Item.create name:'Coding Booke', description:'Book', price:10, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 550, category_id:1
-Item.create name:'Coding Mac', description:'Book', price:600, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 50, category_id:1
-Item.create name:'Coding Pen', description:'Book', price:400, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 30, category_id:1
-Item.create name:'Coding Coffee', description:'Book', price:500, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 50, category_id:1
+Item.create name:'Mouse', description:'Use with keyboard', discount:0.80, price:20, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Logitech', stock: 50, category_id:1
+Item.create name:'Coding Book', description:'Learn to code', discount:0.90, price:50, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 40, category_id:2
+Item.create name:'Mac', description:'Like a PC, but not as good', discount:0.75, price:600, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Apple', stock: 10, category_id:3
+Item.create name:'Vacuum', description:'It sucks', discount:0.80, price:400, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Dyson', stock: 30, category_id:4
+Item.create name:'Coffee', description:'Medium Roast', discount:0.50, price:500, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Stirbacks', stock: 100, category_id:5

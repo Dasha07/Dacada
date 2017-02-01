@@ -23,18 +23,14 @@ class PurchasesController < ApplicationController
     end
 
     def make_purchase
-        if Purchase.first
-            previous_order = Purchase.last.id
-            order_num = previous_order + 1
-        else
-            order_num = 1
-        end
+        order = Order.create user:User.find(session[:user_id])
         puts session[:cart]
         session[:cart].each_with_index do |item_id, index|
             puts "This is item_id #{item_id} and quantity #{session[:quantities][index]}"
-            Purchase.create shipping_cost:3, shipping_time:48, user:User.find(session[:user_id]), item:Item.find(item_id), quantity:session[:quantities][index]
+            Purchase.create shipping_cost:3, shipping_time:48, user:User.find(session[:user_id]), item:Item.find(item_id), quantity:session[:quantities][index], order:order
         end
-        #add order_num to models and append ", order_num:order_num"
+        session.delete(:cart)
+        session.delete(:quantities)
         redirect_to '/cart'
     end
 
