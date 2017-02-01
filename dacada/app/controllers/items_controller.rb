@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @deals = Item.where('DATE(deal_date) = ?', Date.today)
+    @items = Item.where('DATE(deal_date) > ?', Date.today)
     if !session[:user_id]
       return
     end
