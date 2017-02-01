@@ -1,7 +1,11 @@
 <div class="header">
-  <%= link_to image_tag("Dacada_Logo.png", :alt => "logo") %>
-  <h3>Daily deals on things you never knew you needed.</h3><br>
-  <h2>Register for a new account:</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to image_tag("Dacada_Logo.png", :alt => "logo") %>
+      <h3 class="text-center">Daily deals on things you never knew you needed.</h3><br>
+      <h2 class="text-center">Register for a new account:</h2>
+    </div>
+  </div>
 </div>
 
 
@@ -84,7 +88,8 @@
               <% end %>
           </div>
           <p>Click here if you would like daily notifications: <input type="checkbox" name="notification"></p>
-          <input type="submit" name="registerBtn" value="Register">
+          <input class="btn btn-primary" type="submit" name="registerBtn" value="Register">
+          <a class="btn btn-info" href="/login">Login</a>
         </div>
       </form>
     </div>

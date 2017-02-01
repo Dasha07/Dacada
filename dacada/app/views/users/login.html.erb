@@ -23,7 +23,7 @@
             <div class="form-control-feedback"><%= flash[:errors][:login] %></div>
             <% end %>
         </div>
-        <a href="/register">Register</a>
+        <a class="btn btn-info" href="/register">Register</a>
     </div>
     <div class="col-md-4">
       <div class="form-group <%= if flash[:errors] then 'has-danger' end %>">
@@ -33,7 +33,7 @@
           <div class="form-control-feedback"><%= flash[:errors][:login] %></div>
           <% end %>
       </div>
-        <input type="submit" name="" value="Log in">
+        <input type="submit" name="" value="Log in" class="btn btn-primary">
       </form>
     </div>
   </div>

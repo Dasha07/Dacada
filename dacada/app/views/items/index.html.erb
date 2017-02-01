@@ -1,8 +1,8 @@
 <h1>All DACADA Deals</h1>
 
-<a href="/logout">Logout</a>
+<a class="btn btn-primary" href="/logout">Logout</a>
 <% if session[:user_id] != nil %>
-  <a href="/user/<%= @user.id %>">My Profile</a>
+  <a class="btn btn-primary" href="/user/<%= @user.id %>">My Profile</a>
 <% else %>
   <a href="/register">Sign Up</a>
 <% end %>
@@ -11,7 +11,7 @@
   <% @items.each do |item| %>
     <div class="">
       Item name:<a href="/deal/<%= item.id %>"><%= item.name %></a>
-      Description <textarea name="name" rows="2" cols="10"><%= item.description %></textarea>
+      Description: <textarea name="name" rows="2" cols="10"><%= item.description %></textarea>
       Price: $<%= item.price %>
       Date: <%= item.deal_date.strftime('%B %d, %Y') %>
       Manufacturer: <%= item.manufacturer %>
