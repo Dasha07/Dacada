@@ -20,5 +20,4 @@ class PurchaseController < ApplicationController
     session[:cart].delete_at(params[:index].to_i)
     redirect_to '/cart'
   end
-
 end
