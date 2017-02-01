@@ -30,8 +30,8 @@ Category.create name:'Appliance'
 Category.create name:'Miscellaneous'
 
 
-Item.create name:'Mouse', description:'Use with keyboard', discount:0.80, price:20, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Logitech', stock: 50, category_id:1
-Item.create name:'Coding Book', description:'Learn to code', discount:0.90, price:50, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 40, category_id:2
-Item.create name:'Mac', description:'Like a PC, but not as good', discount:0.75, price:600, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Apple', stock: 10, category_id:3
-Item.create name:'Vacuum', description:'It sucks', discount:0.80, price:400, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Dyson', stock: 30, category_id:4
-Item.create name:'Coffee', description:'Medium Roast', discount:0.50, price:500, deal_date:'Mon, 30 Jan 2017 20:13:32 UTC +00:00', manufacturer:'Stirbacks', stock: 100, category_id:5
+Item.create name:'Mouse', description:'Use it with a keyboard, if you really want to.', discount:0.80, price:20, deal_date:'Wed, 1 Feb 2017 20:13:32 UTC +00:00', manufacturer:'Logitech', stock: 50, category_id:1
+Item.create name:'Coding Book', description:'Learn to code, without the computer!', discount:0.90, price:50, deal_date:'Thur, 2 Feb 2017 20:13:32 UTC +00:00', manufacturer:'Coding Dojo', stock: 40, category_id:2
+Item.create name:'Mac', description:'Like a PC, but a lottle bit better.', discount:0.75, price:600, deal_date:'Fri, 3 Feb 2017 20:13:32 UTC +00:00', manufacturer:'Apple', stock: 10, category_id:3
+Item.create name:'Vacuum', description:'It sucks. Quite literally.', discount:0.80, price:400, deal_date:'Sat, 4 Feb 2017 20:13:32 UTC +00:00', manufacturer:'Dyson', stock: 30, category_id:4
+Item.create name:'Coffee', description:'Medium roast, maximum burn.', discount:0.50, price:500, deal_date:'Sun, 5 Feb 2017 20:13:32 UTC +00:00', manufacturer:'Stirbacks', stock: 100, category_id:5

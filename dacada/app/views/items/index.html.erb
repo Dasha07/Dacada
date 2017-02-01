@@ -7,30 +7,25 @@
   <a href="/register">Sign Up</a>
 <% end %>
 
-<div class="card" style="width: 275px; background-color:rgb(88, 215, 208); border: 2px solid lightgrey;">
+<div class="card" style="text-align: center; width: 275px; background-color:rgb(88, 215, 208); border: 2px solid lightgrey;">
   <% @deals.each do |deal| %>
     <div class="card-block">
-      <p>Item name:<a href="/deal/<%= deal.id %>"><%= deal.name %></a></p>
-      <p>Description: <%= deal.description %></p>
-      <p>Price: $<%= deal.price %></p>
-      <p>Date: <%= deal.deal_date.strftime('%B %d, %Y') %></p>
-      <p>Manufacturer: <%= deal.manufacturer %></p>
-      <p>Stock #: <%= deal.stock %></p>
-      <p>Category: <%= deal.category_id %></p>
+      <h4 class="card-title"><%= deal.name %></h4>
+      <p class="card-text"><%= deal.description %></p>
+      <p class="card-text" style="text-">$<%= deal.price %></p>
+      <p class="card-text">Deal of the Day Discount: $<%= deal.discount %></p>
+      <a href="/deal/<%= deal.id %>" class="btn btn-primary">See Details</a>
     </div>
   <% end %>
 </div>
 
-<div class="card" style="width:275px; background-color:lightgrey; border: 2px solid rgb(88, 215, 208); margin-top: 10px;">
+<div class="card" style="text-align: center; width:275px; background-color:lightgrey; border: 2px solid rgb(88, 215, 208); margin-top: 10px;">
   <% @items.each do |item| %>
-    <div class="card-block" style="margin-top: 10px;">
-      <p>Item name:<a href="/deal/<%= item.id %>"><%= item.name %></a></p>
-      <p>Description: <%= item.description %></p>
-      <p>Price: $<%= item.price %></p>
-      <p>Date: <%= item.deal_date.strftime('%B %d, %Y') %></p>
-      <p>Manufacturer: <%= item.manufacturer %></p>
-      <p>Stock #: <%= item.stock %></p>
-      <p>Category: <%= item.category.name %></p>
+    <div class="card-block">
+      <h4 class="card-title"><%= item.name %></h4>
+      <p class="card-text"><%= item.description %></p>
+      <p class="card-text"><%= item.price %></p>
+      <a href="/deal/<%= item.id %>" class="btn btn-primary">See Details</a>
     </div>
   <% end %>
 </div>
