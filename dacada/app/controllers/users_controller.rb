@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find params[:id]
-      @history = @user.items
+      @purchases = @user.purchases
   end
 
   def edit

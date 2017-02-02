@@ -1,23 +1,32 @@
 <h1>Item details</h1>
 <div class="">
-      <p>Name: <%= @item.name %></a></p></br>
-      <p>Description <%= @item.description %></p></br>
-      <p>Price: $<%= @item.price %></p></br>
-      <p>Date: <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
-      <p>Manufacturer: <%= @item.manufacturer %></p></br>
-      <p>Stock #: <%= @item.stock %></p></br>
-      <p>Category: <%= @item.category.name %></p></br>
-
-      <form action="/cart_add" method="post">
-        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <input type="hidden" name="item_id" value="<%= @item.id %>">
-        <input class="btn btn-info" type="submit" name="" value="Add to Cart">
-      </form>
-
-</div><br>
+    <p>Name: <%= @item.name %></a></p>
+    <p>Description <%= @item.description %></p>
+    <p>Price: $<%= @item.price %></p>
+    <p>Date: <%= @item.deal_date.strftime('%B %d, %Y') %></p>
+    <p>Manufacturer: <%= @item.manufacturer %></p>
+    <p>Stock #: <%= @item.stock %></p>
+    <p>Category: <%= @item.category.name %></p>
+    <% if !session[:cart].include? @item.id %>
+        <form action="/cart_add" method="post">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="item_id" value="<%= @item.id %>">
+            <input class="btn btn-info" type="submit" name="" value="Add to Cart">
+        </form>
+    <% else %>
+        <h6>This item is already in your <a href="/cart">cart</a></h6>
+    <% end %>
+</div>
 <div class="revies">
-    <% @reviews.each do |review| %>
-        <p><%= review.user.first_name %> said <%= review.content %>: <%= review.rating %>/10</p>
+    <% if !@reviews.empty? %>
+        <h4>Reviews</h4>
+        <% @reviews.each do |review| %>
+            <p><%= review.user.first_name %> said "<%= review.content %>" - <%= review.rating %>/10</p>
+        <% end %>
+    <% elsif session[:user_id] and @buyers.include? User.find(session[:user_id]) %>
+        <a href="/review/<%= @item.id %>">Leave a Review</a>
+    <% else %>
+        <h6>There are no reviews for this item (log in and purchase to leave one)</h6>
     <% end %>
 </div>
 <a class="btn btn-primary" href="/deals">All Deals</a>
