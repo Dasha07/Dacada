@@ -6,15 +6,22 @@
 <table>
     <tr>
         <th>Item</th>
+        <th>Amount</th>
         <th>Cost</th>
         <th>Date of Purchase</th>
         <th>Your Review</th>
     </tr>
-    <% @history.each do |item| %>
+    <% @purchases.each do |purchase| %>
         <tr>
-            <td><%= item.name %></td>
-            <td>$<%= Purchase.where(item:item).where(user:@user).first.quantity*item.price %></td>
-            <td><%= Purchase.where(item:item).where(user:@user).first.created_at.strftime('%b %d, %Y') %></td>
+            <td><a href="/deal/<%= purchase.item.id %>"><%= purchase.item.name %></a></td>
+            <td><%= purchase.quantity %> ct.</td>
+            <td>$<%= purchase.quantity*purchase.item.price %></td>
+            <td><%= purchase.created_at.strftime('%b %d, %Y') %></td>
+            <% if purchase.item.reviews.find_by(user:@user) %>
+                <td><%= purchase.item.reviews.find_by(user:@user).content %> - <%= purchase.item.reviews.find_by(user:@user).rating %>/10</td>
+            <% else %>
+                <td><a href="/review/<%= purchase.item.id %>">Add a Review</a></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

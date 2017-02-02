@@ -1,19 +1,25 @@
 <div class="container">
-  <h1>My Cart</h1>
-  <div class="row justify-content-around">
-    <div class="col-4">
-      <% if @added %>
-        Item:  <%= @item.name %></a></br>
-        Price: $<%= @item.price %>
-        <form class="" action="/add_to_cart" method="post">
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-          <input type="hidden" name="item_id" value="<%= @item.id %>">
-          <input type="number" name="quantity" min="1" max="100" step='1' value="1"></br>
-          <input type="submit" name="cartBtn" value="Add to Cart">
-        </form>
+    <h1>My Cart</h1>
+  <% if flash[:error] %>
+      <% if flash[:error]['item'] %>
+          <h3><%= flash[:error]['item'][0] %></h3>
+      <% elsif flash[:error]['user'] %>
+          <h3><%= flash[:error]['user'][0] %><a href="/login">here</a><%= flash[:error]['user'][1] %></h3>
       <% end %>
-    </div>
-    <div class="col-4">
+  <% end %>
+
+  <% if @added %>
+    Item:  <%= @item.name %></a></br>
+    Price: $<%= @item.price %>
+    <form class="" action="/add_to_cart" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="item_id" value="<%= @item.id %>">
+      <input type="number" name="quantity" min="1" max="100" step='1' value="1"></br>
+      <input type="submit" name="cartBtn" value="Add to Cart">
+    </form>
+  <% end %>
+
+  <% if !@cart.empty? %>
       <table>
           <tr>
               <th>Item</th>
@@ -30,14 +36,15 @@
               </tr>
           <% end %>
       </table>
-    </div>
-    Total: $<%= @total %>
+      Total: $<%= @total %>
 
-    <form class="" action="/purchase" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="submit" name="purchaseBtn" value="Make Purchase">
-    </form>
-  </div>
+      <form class="" action="/purchase" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="submit" name="purchaseBtn" value="Make Purchase">
+      </form>
+  <% else %>
+      <h3>There's Nothing in Your Cart</h3>
+  <% end %>
+  <a href="/deals">All Deals</a></br>
+  <a href="/logout">Logout</a></br>
 </div>
-    <a class="btn btn-primary" href="/deals">All Deals</a><br>
-    <a class="btn btn-primary" href="/logout">Logout</a><br>

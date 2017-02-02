@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reviews/index'
+
   get '/login'=> 'users#login'
 
   get '/register' => 'users#register'
@@ -31,6 +33,10 @@ Rails.application.routes.draw do
 
   post '/purchase' => 'purchases#make_purchase'
 
+  get '/review/:id' => 'reviews#index'
+
+  post '/review/:id' => 'reviews#create'
+
   root 'items#index'
-  
+
 end

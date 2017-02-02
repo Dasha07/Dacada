@@ -1,12 +1,13 @@
 <div class="container">
   <%= link_to image_tag("Dacada_Logo.png", :alt => "logo") %>
   <h3>Check out today's deals and see what's waiting for you in the wings!</h3>
-  <a class="btn btn-primary" href="/logout">Logout</a>
   <% if session[:user_id] != nil %>
     <a class="btn btn-primary" href="/user/<%= @user.id %>">My Profile</a>
+    <a class="btn btn-primary" href="/logout">Logout</a>
   <% else %>
     <a class="btn btn-primary" href="/register">Sign Up</a>
   <% end %>
+  <a class="btn btn-primary" href="/cart">Cart</a>
 
   <div class="card" style="text-align: center; width: 275px; background-color:rgb(88, 215, 208); border: 2px solid rgb(122, 111, 117); color: rgb(122, 111, 117); margin-top:10px;">
     <% @deals.each do |deal| %>

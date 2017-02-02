@@ -13,25 +13,41 @@ class PurchasesController < ApplicationController
     end
 
     def add_to_cart
-      session[:added] = false
-      puts "THIS IS PARAMS ITEM ID: #{params[:item_id]}"
-      session[:cart].push params[:item_id].to_i
-      session[:quantities].push params[:quantity].to_i
-      puts " #{session[:cart]}this is cart"
-      puts " #{session[:quantities]}this is quantities"
-      redirect_to '/cart'
+        item = Item.find(params[:item_id])
+        if item.stock < params[:quantity].to_i
+            if item.stock == 0
+                flash[:error] = {:item=> ["We're sorry, but we are out of stock for #{item.name}."]}
+            elsif item.stock == 1
+                flash[:error] = {:item=> ["We're sorry, but there is only #{item.stock} unit available for #{item.name}."]}
+            else
+                flash[:error] = {:item=> ["We're sorry, but there are only #{item.stock} units available for #{item.name}."]}
+            end
+        else
+            session[:added] = false
+            session[:cart].push params[:item_id].to_i
+            session[:quantities].push params[:quantity].to_i
+        end
+        redirect_to '/cart'
     end
 
     def make_purchase
-        order = Order.create user:User.find(session[:user_id])
-        puts session[:cart]
-        session[:cart].each_with_index do |item_id, index|
-            puts "This is item_id #{item_id} and quantity #{session[:quantities][index]}"
-            Purchase.create shipping_cost:3, shipping_time:48, user:User.find(session[:user_id]), item:Item.find(item_id), quantity:session[:quantities][index], order:order
+        if !session[:user_id]
+            flash[:error] = {:user=> ["Login or register ", " to purchase"]}
+            puts flash[:error]
+            redirect_to '/cart'
+            return
+        else
+            order = Order.create user:User.find(session[:user_id])
+            session[:cart].each_with_index do |item_id, index|
+                puts "This is item_id #{item_id} and quantity #{session[:quantities][index]}"
+                Purchase.create shipping_cost:3, shipping_time:48, user:User.find(session[:user_id]), item:Item.find(item_id), quantity:session[:quantities][index], order:order
+                Item.find(item_id).adjust_stock(session[:quantities][index])
+            end
+            session.delete(:cart)
+            session.delete(:quantities)
+            redirect_to '/cart'
+            return
         end
-        session.delete(:cart)
-        session.delete(:quantities)
-        redirect_to '/cart'
     end
 
     def remove

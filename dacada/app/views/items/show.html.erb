@@ -15,11 +15,28 @@
       <p><span style="font-weight: bold;">Stock #:</span> <%= @item.stock %></p></br>
       <p><span style="font-weight: bold;">Category:</span> <%= @item.category.name %></p></br>
 
-      <form action="/cart_add" method="post">
-        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <input type="hidden" name="item_id" value="<%= @item.id %>">
-        <input class="btn btn-info" type="submit" name="" value="Add to Cart">
-      </form>
+      <% if !session[:cart].include? @item.id %>
+          <form action="/cart_add" method="post">
+              <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+              <input type="hidden" name="item_id" value="<%= @item.id %>">
+              <input class="btn btn-info" type="submit" name="" value="Add to Cart">
+          </form>
+      <% else %>
+          <h6>This item is already in your <a href="/cart">cart</a></h6>
+      <% end %>
+
+    </div>
+    <div class="">
+        <% if !@reviews.empty? %>
+            <h4>Reviews</h4>
+            <% @reviews.each do |review| %>
+                <p><%= review.user.first_name %> said "<%= review.content %>" - <%= review.rating %>/10</p>
+            <% end %>
+        <% elsif session[:user_id] and @buyers.include? User.find(session[:user_id]) %>
+            <a href="/review/<%= @item.id %>">Leave a Review</a>
+        <% else %>
+            <h6>There are no reviews for this item (log in and purchase to leave one)</h6>
+        <% end %>
     </div>
   </div>
 </div><br>
