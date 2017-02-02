@@ -6,6 +6,6 @@ class ReviewsController < ApplicationController
 
   def create
       Review.create title:params[:title], content:params[:content], rating:params[:rating], item:Item.find(params[:id]), user:User.find(session[:user_id])
-      redirect_to "/deal/#{params[:id]}"
+      redirect_to "/deal/#{params[:id]}/deal"
   end
 end

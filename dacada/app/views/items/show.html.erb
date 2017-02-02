@@ -13,14 +13,18 @@
       <p><span style="font-weight: bold;">Stock #:</span> <%= @item.stock %></p></br>
       <p><span style="font-weight: bold;">Category:</span> <%= @item.category.name %></p></br>
 
-      <% if !session[:cart].include? @item.id %>
-          <form action="/cart_add" method="post">
-              <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-              <input type="hidden" name="item_id" value="<%= @item.id %>">
-              <input class="btn btn-info" type="submit" name="" value="Add to Cart" style="margin-bottom: 10px;">
-          </form>
+      <% if @is_deal %>
+        <% if !session[:cart].include? @item.id %>
+            <form action="/cart_add" method="post">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <input type="hidden" name="item_id" value="<%= @item.id %>">
+                <input class="btn btn-info" type="submit" name="" value="Add to Cart" style="margin-bottom: 10px;">
+            </form>
+        <% else %>
+            <h6>This item is already in your <a href="/cart">cart</a></h6>
+        <% end %>
       <% else %>
-          <h6>This item is already in your <a href="/cart">cart</a></h6>
+        <h6>This item is not for sale yet! Come back on <%= @item.deal_date.strftime("%B %d, %Y") %></h6>
       <% end %>
 
     </div>

@@ -10,7 +10,15 @@ class ItemsController < ApplicationController
     @user = User.find session[:user_id]
   end
 
+  def deal
+      redirect_to "/deal/#{params[:id]}/#{params[:type]}"
+  end
+
   def show
+    @is_deal = false
+    if params[:type] == 'deal'
+        @is_deal = true
+    end
     @item = Item.find params[:id]
     @reviews = @item.reviews
     @buyers = @item.buyers

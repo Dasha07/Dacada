@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   get '/deals' => 'items#index'
 
-  get '/deal/:id'=> 'items#show'
+  get '/deal/:id/:type' => 'items#show'
+
+  post '/deal/:id' => 'items#deal'
 
   post '/cart_add' => 'items#move'
 
