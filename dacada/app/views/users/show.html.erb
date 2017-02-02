@@ -12,9 +12,15 @@
     </tr>
     <% @history.each do |item| %>
         <tr>
+            <% purchase = Purchase.where(item:item).where(user:@user).first %>
             <td><%= item.name %></td>
-            <td>$<%= Purchase.where(item:item).where(user:@user).first.quantity*item.price %></td>
-            <td><%= Purchase.where(item:item).where(user:@user).first.created_at.strftime('%b %d, %Y') %></td>
+            <td>$<%= purchase.quantity*item.price %></td>
+            <td><%= purchase.created_at.strftime('%b %d, %Y') %></td>
+            <% if purchase.item.reviews.find_by(user:@user) %>
+                <td><%= purchase.item.reviews.find_by(user:@user).content %></td>
+            <% else %>
+                <td><a href="/review/<%= item.id %>">Add a Review</a></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

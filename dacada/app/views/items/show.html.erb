@@ -15,4 +15,9 @@
       </form>
 
 </div><br>
+<div class="revies">
+    <% @reviews.each do |review| %>
+        <p><%= review.user.first_name %> said <%= review.content %>: <%= review.rating %>/10</p>
+    <% end %>
+</div>
 <a class="btn btn-primary" href="/deals">All Deals</a>
