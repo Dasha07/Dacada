@@ -1,8 +1,20 @@
-<h1>Add Comment for <%= @item.name %></h1>
-<form class="" action="/review/<%= @item.id %>" method="post">
+<div class="container">
+  <h1>Add a Review for <%= @item.name %></h1>
+  <form action="/review/<%= @item.id %>" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    Title <input type="text" name="title" value=""> <br>
-    Content <textarea name="content" rows="8" cols="80"></textarea> <br>
-    Rating <input type="number" name="rating" min="1" max="10" step='1' value="5"> / 10 <br>
-    <input type="submit" name="reviewBtn" value="Submit Review">
-</form>
+    <div class="form-group">
+      <label for="formGroup">Title:</label>
+      <input type="text" name="title" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="formGroup">Content:</label>
+      <textarea name="content" rows="8" cols="80" class="form-control"></textarea>
+    </div>
+    <div class="form">
+      <label for="formGroup">Rating:</label>
+      <input class="form" type="number" name="rating" min="1" max="10" step='1' value="5"> / 10 <br>
+    </div>
+    <input class="btn btn-primary" type="submit" name="reviewBtn" value="Submit Review" style="margin-bottom: 15px; margin-top:10px;">
+  </form>
+  <a class="btn btn-info" style="margin-bottom: 15px;" href="/deals">Take me back to deals!</a>
+</div>

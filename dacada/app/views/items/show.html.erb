@@ -1,16 +1,14 @@
-<h1>Item details</h1>
+<h1 style="margin-left: 90px;">Item details</h1>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col">
-      <img src="<%= @item.photo %>" alt="Oh no! Missing Image!" style="width: 270px; height: auto; margin-top:15px;">
+    <div class="col-4">
+      <img src="<%= @item.photo %>" alt="Oh no! Missing Image!" style="width: 270px; height: auto; margin-top:125px;">
     </div>
-    <div class="col">
+    <div class="col-4" style="font-size:18;">
       <p><span style="font-weight: bold;">Item:</span> <%= @item.name %></a></p></br>
       <p><span style="font-weight: bold;">Description:</span> <%= @item.description %></p></br>
       <p><span style="font-weight: bold;">Price:</span> $<%= '%.2f'%@item.price %></p></br>
-      <p><span style="font-weight: bold;">Date:</span> <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
-    </div>
-    <div class="col">
+      <p><span style="font-weight: bold;">Deal Date:</span> <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
       <p><span style="font-weight: bold;">Manufacturer:</span> <%= @item.manufacturer %></p></br>
       <p><span style="font-weight: bold;">Stock #:</span> <%= @item.stock %></p></br>
       <p><span style="font-weight: bold;">Category:</span> <%= @item.category.name %></p></br>
@@ -19,14 +17,14 @@
           <form action="/cart_add" method="post">
               <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
               <input type="hidden" name="item_id" value="<%= @item.id %>">
-              <input class="btn btn-info" type="submit" name="" value="Add to Cart">
+              <input class="btn btn-info" type="submit" name="" value="Add to Cart" style="margin-bottom: 10px;">
           </form>
       <% else %>
           <h6>This item is already in your <a href="/cart">cart</a></h6>
       <% end %>
 
     </div>
-    <div class="">
+    <div class="col-4">
         <% if !@reviews.empty? %>
             <h4>Reviews</h4>
             <% @reviews.each do |review| %>
@@ -40,4 +38,4 @@
     </div>
   </div>
 </div><br>
-<a class="btn btn-primary" href="/deals">All Deals</a>
+<a class="btn btn-primary" href="/deals" style="margin-left: 90px;">All Deals</a>

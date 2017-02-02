@@ -1,27 +1,29 @@
-<h2><%= @user.first_name %> <%= @user.last_name %></h2>
-<a class="btn btn-primary" href="/user/<%= @user.id %>/edit">Edit Profile</a>
-<a class="btn btn-primary" href="/logout">Logout</a>
-<a class="btn btn-primary" href="/deals">Today's Deals</a>
-<h4>Purchase History</h4>
-<table>
-    <tr>
-        <th>Item</th>
-        <th>Amount</th>
-        <th>Cost</th>
-        <th>Date of Purchase</th>
-        <th>Your Review</th>
-    </tr>
-    <% @purchases.each do |purchase| %>
-        <tr>
-            <td><a href="/deal/<%= purchase.item.id %>"><%= purchase.item.name %></a></td>
-            <td><%= purchase.quantity %> ct.</td>
-            <td>$<%= purchase.quantity*purchase.item.price %></td>
-            <td><%= purchase.created_at.strftime('%b %d, %Y') %></td>
-            <% if purchase.item.reviews.find_by(user:@user) %>
-                <td><%= purchase.item.reviews.find_by(user:@user).content %> - <%= purchase.item.reviews.find_by(user:@user).rating %>/10</td>
-            <% else %>
-                <td><a href="/review/<%= purchase.item.id %>">Add a Review</a></td>
-            <% end %>
-        </tr>
-    <% end %>
-</table>
+<div class="container">
+  <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+  <a class="btn btn-primary" href="/user/<%= @user.id %>/edit">Edit Profile</a>
+  <a class="btn btn-primary" href="/logout">Logout</a>
+  <a class="btn btn-primary" href="/deals">Today's Deals</a>
+  <h4 style="margin-top: 10px;">Purchase History</h4>
+  <table>
+      <tr>
+          <th>Item</th>
+          <th>Amount</th>
+          <th>Cost</th>
+          <th>Date of Purchase</th>
+          <th>Your Review</th>
+      </tr>
+      <% @purchases.each do |purchase| %>
+          <tr>
+              <td><a href="/deal/<%= purchase.item.id %>"><%= purchase.item.name %></a></td>
+              <td><%= purchase.quantity %> ct.</td>
+              <td>$<%= '%.2f'%(purchase.quantity*purchase.item.price) %></td>
+              <td><%= purchase.created_at.strftime('%b %d, %Y') %></td>
+              <% if purchase.item.reviews.find_by(user:@user) %>
+                  <td style="margin-bottom: 15px;"><%= purchase.item.reviews.find_by(user:@user).content %> - <%= purchase.item.reviews.find_by(user:@user).rating %>/10</td>
+              <% else %>
+                  <td><a style="margin-bottom: 8px; margin-top: 8px;" class="btn btn-info" href="/review/<%= purchase.item.id %>">Add a Review</a></td>
+              <% end %>
+          </tr>
+      <% end %>
+  </table>
+</div>

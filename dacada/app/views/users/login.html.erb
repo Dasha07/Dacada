@@ -1,17 +1,23 @@
-<div class="header">
-  <%= link_to image_tag("Dacada_Logo.png", :alt => "logo") %>
-  <h3>Daily deals on things you never knew you needed.</h3><br>
-  <h2>Please log in to your account:</h2>
-</div>
-
-<% if flash[:errors] %>
-  <% flash[:errors].each do |error| %>
-  <h4> <%= error[1][0] unless error[0] == "password" %> </h4>
-  <h4> <%= error[1][1] if error[0] == "password" %> </h4>
-  <% end %>
-<% end %>
-
 <div class="container">
+  <div class="header">
+    <div class="row">
+      <div class="col-md-12">
+        <div style="margin-left: 275px;">
+          <%= link_to image_tag("http://imgur.com/7IDTkAo.png", :alt => "logo") %>
+        </div>
+        <h3 class="text-center">Daily deals on things you never knew you needed.</h3><br>
+        <h2 class="text-center">Please log in to your account:</h2>
+      </div>
+    </div>
+  </div>
+
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <h4> <%= error[1][0] unless error[0] == "password" %> </h4>
+    <h4> <%= error[1][1] if error[0] == "password" %> </h4>
+    <% end %>
+  <% end %>
+
   <div class="row">
     <div class="col-md-4">
       <form action="/login" method="post" class="form-group">
