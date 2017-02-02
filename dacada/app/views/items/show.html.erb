@@ -1,18 +1,26 @@
 <h1>Item details</h1>
-<div class="">
-      <p>Name: <%= @item.name %></a></p></br>
-      <p>Description <%= @item.description %></p></br>
-      <p>Price: $<%= @item.price %></p></br>
-      <p>Date: <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
-      <p>Manufacturer: <%= @item.manufacturer %></p></br>
-      <p>Stock #: <%= @item.stock %></p></br>
-      <p>Category: <%= @item.category.name %></p></br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+      <img src="<%= @item.photo %>" alt="Oh no! Missing Image!" style="width: 270px; height: auto; margin-top:15px;">
+    </div>
+    <div class="col">
+      <p><span style="font-weight: bold;">Item:</span> <%= @item.name %></a></p></br>
+      <p><span style="font-weight: bold;">Description:</span> <%= @item.description %></p></br>
+      <p><span style="font-weight: bold;">Price:</span> $<%= '%.2f'%@item.price %></p></br>
+      <p><span style="font-weight: bold;">Date:</span> <%= @item.deal_date.strftime('%B %d, %Y') %></p></br>
+    </div>
+    <div class="col">
+      <p><span style="font-weight: bold;">Manufacturer:</span> <%= @item.manufacturer %></p></br>
+      <p><span style="font-weight: bold;">Stock #:</span> <%= @item.stock %></p></br>
+      <p><span style="font-weight: bold;">Category:</span> <%= @item.category.name %></p></br>
 
       <form action="/cart_add" method="post">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <input type="hidden" name="item_id" value="<%= @item.id %>">
         <input class="btn btn-info" type="submit" name="" value="Add to Cart">
       </form>
-
+    </div>
+  </div>
 </div><br>
 <a class="btn btn-primary" href="/deals">All Deals</a>

@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :manufacturer
       t.integer :stock
       t.references :category, index: true, foreign_key: true
+      t.string :photo
 
       t.timestamps null: false
     end
