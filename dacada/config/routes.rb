@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   get '/deals' => 'items#index'
 
+  get '/deals/:category_id' => 'items#index'
+
   get '/deal/:id/:type' => 'items#show'
+
+  post '/deals/get_category' => 'items#categorize'
 
   post '/deal/:id' => 'items#deal'
 

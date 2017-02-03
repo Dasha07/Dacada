@@ -8,6 +8,20 @@
     <a class="btn btn-primary" href="/register">Sign Up</a>
   <% end %>
   <a class="btn btn-primary" href="/cart">Cart</a>
+  <% if @browsing %>
+      <a class="btn btn-primary" href="/deals">All Deals</a>
+  <% end %>
+  <div class="">
+      <form class="" action="/deals/get_category" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          Browse by Category: <select class="" name="category_id">
+                <% @categories.each do |category| %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                <% end %>
+          </select>
+          <input type="submit" name="categoryBtn" value="Browse">
+      </form>
+  </div>
   <div class="card-columns" style="display: inline-block;">
     <% @deals.each do |deal| %>
         <div class="card" style="text-align: center; width: 275px; background-color:rgb(88, 215, 208); border: 2px solid rgb(122, 111, 117); color: rgb(122, 111, 117); margin-top:10px;">
@@ -16,7 +30,7 @@
               <h4 class="card-title"><%= deal.name %></h4>
               <p class="card-text"><%= deal.description %></p>
               <p class="card-text" style="font-weight: bold;">$<%= '%.2f'%deal.price %></p>
-              <p class="card-text">Original Price: $<%= '%.2f'%(deal.discount+deal.price) %><br>($<%= '%.2f'%deal.discount %> off!)</p>
+              <p class="card-text">Original Price: <span style="text-decoration:line-through;">$<%= '%.2f'%(deal.discount+deal.price) %></span><br>($<%= '%.2f'%deal.discount %> off!)</p>
               <form action="/deal/<%= deal.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                   <input type="hidden" name="type" value="deal">
