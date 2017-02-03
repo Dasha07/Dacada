@@ -1,6 +1,8 @@
 class PurchasesController < ApplicationController
     def show
-      @item =Item.find session[:item_id]
+      if session[:item_id]
+          @item = Item.find session[:item_id]
+      end
       session[:cart] = [] unless session[:cart]
       session[:quantities] = [] unless session[:quantities]
       @prices = [] unless @prices
