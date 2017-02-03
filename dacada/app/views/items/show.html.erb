@@ -24,7 +24,7 @@
             <h6>This item is already in your <a href="/cart">cart</a></h6>
         <% end %>
       <% else %>
-        <h6>This item is not for sale yet! Come back on <%= @item.deal_date.strftime("%B %d, %Y") %></h6>
+        <h6>This item is only for sale on <%= @item.deal_date.strftime("%B %d, %Y") %></h6>
       <% end %>
 
     </div>

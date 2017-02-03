@@ -33,12 +33,12 @@
                   <tr>
                       <td><%= Item.find(id).name %></td>
                       <td><%= session[:quantities][index] %> ct.</td>
-                      <td>$<%= '%.2f'%@prices[index] %></td>
+                      <td>$<%= "%.2f" % @prices[index] %></td>
                       <td><a class="btn btn-info" href="/remove/<%= index %>">Remove</a></td>
                   </tr>
               <% end %>
           </table>
-          Total: $<%= @total %>
+          Total: $<%= "%.2f" % @total %>
 
           <form class="" action="/purchase" method="post">
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

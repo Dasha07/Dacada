@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def login_user
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
@@ -32,7 +31,8 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find params[:id]
-      @purchases = @user.purchases
+      @deal_purchases = Purchase.joins(:item).where('DATE(deal_date) = ?', Date.today).where('user_id = ?', @user.id)
+      @item_purchases = Purchase.joins(:item).where('DATE(deal_date) != ?', Date.today).where('user_id = ?', @user.id)
   end
 
   def edit
